@@ -1,6 +1,5 @@
 package com.example.BusbookingSys.controller;
-
-import com.example.BusbookingSys.dto.ApiResponse;
+import com.example.BusbookingSys.dto.response.*;
 import com.example.BusbookingSys.entity.Seat;
 import com.example.BusbookingSys.service.SeatService;
 import lombok.RequiredArgsConstructor;

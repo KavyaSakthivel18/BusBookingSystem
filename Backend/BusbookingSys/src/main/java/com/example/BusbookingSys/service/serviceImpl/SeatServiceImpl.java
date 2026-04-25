@@ -1,8 +1,5 @@
 package com.example.BusbookingSys.service.serviceImpl;
 
-// public class SeatServiceImpl {
-    
-// }
 import com.example.BusbookingSys.entity.Seat;
 import com.example.BusbookingSys.exception.ResourceNotFoundException;
 import com.example.BusbookingSys.repository.SeatRepository;

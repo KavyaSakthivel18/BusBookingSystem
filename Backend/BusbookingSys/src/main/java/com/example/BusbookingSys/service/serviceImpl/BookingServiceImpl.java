@@ -1,11 +1,6 @@
 package com.example.BusbookingSys.service.serviceImpl;
-
-// public class BookingServiceImpl {
-    
-// }
-
-
-import com.example.BusbookingSys.dto.*;
+import com.example.BusbookingSys.dto.request.*;
+import com.example.BusbookingSys.dto.response.*;
 import com.example.BusbookingSys.entity.*;
 import com.example.BusbookingSys.exception.*;
 import com.example.BusbookingSys.repository.*;
