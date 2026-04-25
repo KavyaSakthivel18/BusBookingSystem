@@ -1,9 +1,4 @@
 package com.example.BusbookingSys.repository;
-
-// public class SeatRepository {
-    
-// }
-
 import com.example.BusbookingSys.entity.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 
