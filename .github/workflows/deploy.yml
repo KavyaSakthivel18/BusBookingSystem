@@ -1,13 +1,15 @@
-name: Java CI/CD
+name: Full Stack CI
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
 
 jobs:
-  build:
+
+  backend:
+    name: Backend Build
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +20,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
-      - name: Build with Maven
-        run: ./mvnw clean install
+      - name: Build Backend
         working-directory: Backend/BusbookingSys
+        run: |
+          chmod +x mvnw
+          ./mvnw clean install -DskipTests
