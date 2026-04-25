@@ -4,10 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Standard API Response format for ALL modules
- * TEAM STANDARD - DO NOT CHANGE
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
