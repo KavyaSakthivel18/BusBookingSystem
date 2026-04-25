@@ -23,7 +23,7 @@ jobs:
           java-version: '21'
 
       - name: Build Backend
-        working-directory: ./BusbookingSys
+        working-directory: Backend/BusbookingSys
         run: |
           chmod +x mvnw
           ./mvnw clean install -DskipTests
