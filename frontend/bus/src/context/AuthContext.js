@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   const loadUser = async () => {
     try {
       const userId = localStorage.getItem('userId');
-      if (userId) {
+      if (userId && userId !== 'undefined') {
         const response = await authAPI.getUserById(userId);
         setUser(response.data.data);
       }
@@ -51,15 +51,18 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const response = await authAPI.login({ email, password });
-      const { data } = response.data;
+      const { data } = response.data; // This is LoginResponse
       
-      setToken(data.token);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userId', data.userId);
+      const token = data.token;
+      const userObj = data.user;
       
-      // Fetch full user data
-      const userResponse = await authAPI.getUserById(data.userId);
-      setUser(userResponse.data.data);
+      setToken(token);
+      localStorage.setItem('token', token);
+      
+      if (userObj && userObj.id) {
+        localStorage.setItem('userId', userObj.id);
+        setUser(userObj);
+      }
       
       return { success: true, data };
     } catch (err) {

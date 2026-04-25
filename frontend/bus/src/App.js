@@ -13,6 +13,8 @@ import Register from './pages/Register';
 import Booking from './pages/Booking';
 import Checkout from './pages/Checkout';
 import MyBookings from './pages/MyBookings';
+import Admin from './pages/Admin';
+import AdminRoute from './components/AdminRoute';
 
 function App() {
   return (
@@ -28,6 +30,16 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+
+                {/* Admin Routes */}
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminRoute>
+                      <Admin />
+                    </AdminRoute>
+                  }
+                />
 
                 {/* Protected Routes */}
                 <Route

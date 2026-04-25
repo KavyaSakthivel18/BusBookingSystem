@@ -80,29 +80,37 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">Safe & Comfortable Bus Travels</h1>
-          <p className="text-xl text-blue-100">Book your tickets online and enjoy hassle-free journey</p>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 animate-fade-in">Safe & Comfortable Bus Travels</h1>
+          <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto">Book your tickets online and enjoy a premium, hassle-free journey with our top-rated service.</p>
         </div>
       </section>
 
       {/* Search Section */}
       <section className="max-w-7xl mx-auto px-4 py-8 -mt-6 relative z-10">
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Search Buses</h2>
+        <div className="bg-white rounded-xl shadow-2xl p-6 md:p-10 border border-gray-100 relative overflow-hidden">
+          {loading && (
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-20">
+              <div className="flex flex-col items-center gap-4">
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
+                <p className="text-blue-600 font-bold animate-pulse">Loading amazing journeys...</p>
+              </div>
+            </div>
+          )}
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center md:text-left">Find Your Next Trip</h2>
           
-          <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Source */}
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">From</label>
-              <div className="flex items-center border-2 border-gray-300 rounded-lg focus-within:border-blue-500">
-                <FaMapMarkerAlt className="text-gray-400 mx-3" />
+            <div className="space-y-2">
+              <label className="block text-gray-700 font-bold text-sm uppercase tracking-wider">From</label>
+              <div className="flex items-center border-2 border-gray-200 rounded-xl focus-within:border-blue-500 transition-all bg-gray-50">
+                <FaMapMarkerAlt className="text-blue-500 mx-4" />
                 <select
                   name="source"
                   value={searchParams.source}
                   onChange={handleInputChange}
-                  className="flex-1 py-2 px-2 outline-none"
+                  className="flex-1 py-3 px-2 outline-none bg-transparent font-medium text-gray-800"
                 >
                   <option value="">Select source</option>
                   {routes.map(route => (
@@ -113,15 +121,15 @@ const Home = () => {
             </div>
 
             {/* Destination */}
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">To</label>
-              <div className="flex items-center border-2 border-gray-300 rounded-lg focus-within:border-blue-500">
-                <FaMapMarkerAlt className="text-gray-400 mx-3" />
+            <div className="space-y-2">
+              <label className="block text-gray-700 font-bold text-sm uppercase tracking-wider">To</label>
+              <div className="flex items-center border-2 border-gray-200 rounded-xl focus-within:border-blue-500 transition-all bg-gray-50">
+                <FaMapMarkerAlt className="text-blue-500 mx-4" />
                 <select
                   name="destination"
                   value={searchParams.destination}
                   onChange={handleInputChange}
-                  className="flex-1 py-2 px-2 outline-none"
+                  className="flex-1 py-3 px-2 outline-none bg-transparent font-medium text-gray-800"
                 >
                   <option value="">Select destination</option>
                   {routes.map(route => (
@@ -132,17 +140,17 @@ const Home = () => {
             </div>
 
             {/* Date */}
-            <div>
-              <label className="block text-gray-700 font-semibold mb-2">Travel Date</label>
-              <div className="flex items-center border-2 border-gray-300 rounded-lg focus-within:border-blue-500">
-                <FaCalendarAlt className="text-gray-400 mx-3" />
+            <div className="space-y-2">
+              <label className="block text-gray-700 font-bold text-sm uppercase tracking-wider">Travel Date</label>
+              <div className="flex items-center border-2 border-gray-200 rounded-xl focus-within:border-blue-500 transition-all bg-gray-50">
+                <FaCalendarAlt className="text-blue-500 mx-4" />
                 <input
                   type="date"
                   name="travelDate"
                   value={searchParams.travelDate}
                   onChange={handleInputChange}
                   min={new Date().toISOString().split('T')[0]}
-                  className="flex-1 py-2 px-2 outline-none"
+                  className="flex-1 py-3 px-2 outline-none bg-transparent font-medium text-gray-800"
                 />
               </div>
             </div>
@@ -151,14 +159,18 @@ const Home = () => {
             <div className="flex items-end">
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-2 rounded-lg transition flex items-center justify-center gap-2"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-blue-200 flex items-center justify-center gap-3 transform hover:-translate-y-1"
               >
                 <FaSearch /> Search
               </button>
             </div>
           </form>
 
-          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+          {error && (
+            <div className="mt-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-r-lg animate-shake">
+              <p className="text-center font-medium">{error}</p>
+            </div>
+          )}
         </div>
       </section>
 
